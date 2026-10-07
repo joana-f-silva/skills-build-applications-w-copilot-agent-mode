@@ -1,16 +1,19 @@
-# React + Vite
+# Octofit Tracker frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The React 19 presentation tier is built with Vite, React Router, and Bootstrap. It displays activities, leaderboard standings, teams, members, and workout suggestions from the API tier.
 
-Currently, two official plugins are available:
+## API configuration
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The frontend calls the API on port `8000`. In GitHub Codespaces, define `VITE_CODESPACE_NAME` in a local environment file such as `.env.local` before starting Vite:
 
-## React Compiler
+```dotenv
+VITE_CODESPACE_NAME=your-codespace-name
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The value is the Codespace name (without a port or domain). The frontend uses it to build `https://<codespace-name>-8000.app.github.dev`. Vite reads `.env.local` at startup, so restart the dev server after changing it.
 
-## Expanding the Oxlint configuration
+`VITE_CODESPACE_NAME` is required to connect from a Codespace browser to the remote API. When it is unset (for local development), the frontend safely uses `http://localhost:8000`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Development
+
+Run `npm run dev` from this directory to start the Vite development server. Use `npm run build` to create a production build and `npm run lint` to run Oxlint.
